@@ -22,6 +22,7 @@ For detailed instructions on setting up, building, and running the project, plea
 - Added a custom **App Logo** and **Launcher/Splash Screen**.
 - Implemented both **Grid View** and **List View** for flexible content presentation.
 - Used **AI-assisted development** to build and refine the UI.
+- Used **SwiftUI** for the UI and **Combine & Swift Concurency** for reactive programming and data fetching.
 
 
 ## 🎥 Full Demo
