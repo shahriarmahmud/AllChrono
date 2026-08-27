@@ -4,14 +4,32 @@ AllChrono is a marketplace for buying and selling watches. This is a small, self
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This project is developed using **Flutter** and supports both **Android** and **iOS** platforms.
 
-A few resources to get you started if this is your first Flutter project:
+For detailed instructions on setting up, building, and running the project, please refer to:
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+**`Flutter App — Setup, Build & Run Guide.md`**
+[Link](https://github.com/shahriarmahmud/AllChrono/blob/main/allchrono_flutter/Flutter%20App%20—%20Setup%2C%20Build%20%26%20Run%20Guide.md)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+
+
+## Key Features & Implementation
+
+- Implemented **Clean Architecture** with the **MVVM design pattern**.
+- Added **unit and widget test cases** to ensure code quality and reliability.
+- Implemented **Dependency Injection** for better modularity and testability.
+- Added a reusable **Price Formatter** for consistent price formatting.
+- Added a dedicated **Product Details screen**.
+- Implemented a **Search screen** with **debouncing** and **search suggestions**.
+- Added a custom **App Logo** and **Launcher/Splash Screen**.
+- Implemented both **Grid View** and **List View** for flexible content presentation.
+- Used **AI-assisted development** to build and refine the UI.
+
+
+## 🎥 Full Demo
+
+[▶️ Watch Full Demo Android](https://youtube.com/shorts/2ouJ0Led4zs?feature=share)
+
+[▶️ Watch Full Demo iOS](https://youtube.com/shorts/PZarLVu4BCo?feature=share)
+
