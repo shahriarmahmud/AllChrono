@@ -1,0 +1,19 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "AllChrono_Android",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/Main/main.dart",
+      "toolArgs": ["-d", "android"]
+    },
+    {
+      "name": "AllChrono_iOS",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/Main/main.dart",
+      "toolArgs": ["-d", "ios"]
+    }
+  ]
+}
