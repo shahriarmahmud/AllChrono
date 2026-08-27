@@ -42,6 +42,7 @@ final class WatchListViewModel {
     private let searchSubject = PassthroughSubject<String, Never>()
     private var cancellables = Set<AnyCancellable>()
     private var allWatches: [Watch] = []
+    private var isSearchFocused = false
 
     init(
         fetchWatchesUseCase: FetchWatchesUseCase,
@@ -70,7 +71,9 @@ final class WatchListViewModel {
     }
 
     func selectSuggestion(_ suggestion: String) {
+        isSearchFocused = false
         searchText = suggestion
+        applyFilter(query: suggestion)
         isShowingSuggestions = false
     }
 
@@ -79,7 +82,8 @@ final class WatchListViewModel {
     }
 
     func onSearchFocusChanged(_ isFocused: Bool) {
-        isShowingSuggestions = isFocused && !suggestions.isEmpty
+        isSearchFocused = isFocused
+        updateSuggestionsVisibility()
     }
 
     private func bindSearch() {
@@ -102,8 +106,7 @@ final class WatchListViewModel {
             query: query,
             limit: AppConstants.Search.maxSuggestions
         )
-        isShowingSuggestions = !query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
-            && !suggestions.isEmpty
+        updateSuggestionsVisibility()
 
         switch viewState {
         case .loading, .error:
@@ -111,5 +114,12 @@ final class WatchListViewModel {
         default:
             viewState = filteredWatches.isEmpty ? .empty : .loaded
         }
+    }
+
+    private func updateSuggestionsVisibility() {
+        let trimmedQuery = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
+        isShowingSuggestions = isSearchFocused
+            && !trimmedQuery.isEmpty
+            && !suggestions.isEmpty
     }
 }

@@ -82,10 +82,9 @@ struct WatchListView: View {
                 }
                 .padding(.horizontal)
                 .padding(.bottom, 8)
-                .transition(.opacity.combined(with: .move(edge: .top)))
+                .transition(.opacity)
             }
         }
-        .animation(.easeInOut(duration: 0.2), value: viewModel.isShowingSuggestions)
     }
 
     @ViewBuilder
@@ -133,6 +132,10 @@ struct WatchListView: View {
                 content(watch)
             }
             .buttonStyle(.plain)
+            .simultaneousGesture(TapGesture().onEnded {
+                isSearchFocused = false
+                viewModel.dismissSuggestions()
+            })
         }
     }
 

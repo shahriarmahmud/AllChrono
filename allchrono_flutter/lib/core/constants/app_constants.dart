@@ -10,7 +10,7 @@ abstract final class AppConstants {
 }
 
 abstract final class AppStrings {
-  static const searchHint = 'Search by make or model';
+  static const searchHint = 'Search by model';
   static const listViewTooltip = 'List view';
   static const gridViewTooltip = 'Grid view';
   static const filterAll = 'All';

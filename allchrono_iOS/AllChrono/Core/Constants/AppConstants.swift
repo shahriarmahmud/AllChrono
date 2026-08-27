@@ -12,7 +12,7 @@ import Foundation
 enum AppConstants {
     enum Strings {
         static let appTitle = "AllChrono"
-        static let searchPlaceholder = "Search by make or model"
+        static let searchPlaceholder = "Search by model"
         static let noResultsTitle = "No Watches Found"
         static let noResultsMessage = "Try adjusting your search terms."
         static let loadingMessage = "Loading watches..."
