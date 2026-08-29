@@ -11,21 +11,21 @@ import SwiftUI
 struct WatchListView: View {
     @State private var viewModel: WatchListViewModel
     @FocusState private var isSearchFocused: Bool
-
+    
     init(viewModel: WatchListViewModel) {
         _viewModel = State(initialValue: viewModel)
     }
-
+    
     private let gridColumns = Array(
         repeating: GridItem(.flexible(), spacing: AppConstants.Layout.gridSpacing),
         count: AppConstants.Layout.gridColumns
     )
-
+    
     var body: some View {
         NavigationStack {
             VStack(spacing: 0) {
                 searchSection
-
+                
                 contentSection
             }
             .navigationTitle(AppConstants.Strings.appTitle)
@@ -42,13 +42,13 @@ struct WatchListView: View {
             }
         }
     }
-
+    
     private var searchSection: some View {
         VStack(spacing: 0) {
             HStack(spacing: 8) {
                 Image(systemName: "magnifyingglass")
                     .foregroundStyle(.secondary)
-
+                
                 TextField(AppConstants.Strings.searchPlaceholder, text: $viewModel.searchText)
                     .textInputAutocapitalization(.never)
                     .autocorrectionDisabled()
@@ -56,7 +56,7 @@ struct WatchListView: View {
                     .onChange(of: isSearchFocused) { _, isFocused in
                         viewModel.onSearchFocusChanged(isFocused)
                     }
-
+                
                 if !viewModel.searchText.isEmpty {
                     Button {
                         viewModel.searchText = ""
@@ -74,7 +74,7 @@ struct WatchListView: View {
             )
             .padding(.horizontal)
             .padding(.vertical, 8)
-
+            
             if viewModel.isShowingSuggestions {
                 SearchSuggestionsView(suggestions: viewModel.suggestions) { suggestion in
                     viewModel.selectSuggestion(suggestion)
@@ -86,21 +86,25 @@ struct WatchListView: View {
             }
         }
     }
-
+    
     @ViewBuilder
     private var contentSection: some View {
         switch viewModel.viewState {
         case .loading:
             loadingView
+            
         case .error(let message):
             errorView(message: message)
+            
         case .empty:
             emptyView
+            
         case .loaded:
             watchListing
         }
     }
-
+    
+    
     private var watchListing: some View {
         ScrollView {
             Group {
@@ -123,7 +127,7 @@ struct WatchListView: View {
         }
         .scrollDismissesKeyboard(.interactively)
     }
-
+    
     private func watchLinks<Content: View>(
         @ViewBuilder content: @escaping (Watch) -> Content
     ) -> some View {
@@ -138,7 +142,7 @@ struct WatchListView: View {
             })
         }
     }
-
+    
     private var layoutToggleButton: some View {
         Button {
             viewModel.toggleLayout()
@@ -147,11 +151,11 @@ struct WatchListView: View {
         }
         .accessibilityLabel(
             viewModel.layout == .grid
-                ? AppConstants.Strings.switchToListView
-                : AppConstants.Strings.switchToGridView
+            ? AppConstants.Strings.switchToListView
+            : AppConstants.Strings.switchToGridView
         )
     }
-
+    
     private var loadingView: some View {
         VStack(spacing: 12) {
             ProgressView()
@@ -161,7 +165,7 @@ struct WatchListView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
-
+    
     private var emptyView: some View {
         ContentUnavailableView(
             AppConstants.Strings.noResultsTitle,
@@ -169,7 +173,7 @@ struct WatchListView: View {
             description: Text(AppConstants.Strings.noResultsMessage)
         )
     }
-
+    
     private func errorView(message: String) -> some View {
         ContentUnavailableView {
             Label(AppConstants.Strings.errorTitle, systemImage: "exclamationmark.triangle")
